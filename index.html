@@ -19,7 +19,9 @@
                     $.ajax("/api/prompt");
 
                     setTimeout(function(){
-                        $.ajax("/api/stayed");
+                        $.ajax("/api/stayed").done(function(){
+                            $("#Msg").html("User stayed :)");
+                        });
                     }, 1);
 
                     return "Download has not yet started";
