@@ -13,6 +13,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>
             $(document).ready(function(){
+                
                 window.onbeforeunload = function(){
                     $("#Msg").html("User is about to leave");// post to server
                     $.ajax("/api/prompt");
@@ -21,17 +22,23 @@
                         $.ajax("/api/stayed");
                     }, 1);
 
-                    return "Download has not yet completed";
+                    return "Download has not yet started";
                 }
                 
                 $.ajax("/api/init").done(function(){
                     $("#Msg").html("Ready");
                 });
+                
+                $("#Download").click(function(){
+                    window.onbeforeunload = undefined;
+                    $("#Msg").html("Download Started");
+                });
             });
         
         </script>
         
+        <h3 id="Msg">&nbsp;</h3>
+        <h3><button id="Download">Download</button></h3>
         <h3><a href="http://www.google.com">Goto Google</a></h3>
-        <h3 id="Msg"></h3>
     </body>
 </html>
